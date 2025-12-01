@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto Scroll Tabs With Dots</title>
+
+<style>
+
+body {
+  margin: 0;
+  background: #ffffff;
+  font-family: Arial, sans-serif;
+}
+
+/* =============================================================== */
+/*                         DESKTOP SECTION                          */
+/* =============================================================== */
+
+
+
+</style>
+</head>
+<body>
+
+
+
+
+<!-- =============================================================== -->
+<!--                      DESKTOP CONTENT (FIXED)                    -->
+<!-- =============================================================== -->
+
+<section class="full-tab-section">
+
+  <!-- TOP NAVIGATION -->
+  <div class="nav-tabs">
+    <div class="tab active" data-index="0">CREATIVES</div>
+    <div class="tab" data-index="1">NUDGE</div>
+    <div class="tab" data-index="2">RESULTS</div>
+  </div>
+
+  <!-- TAB: CREATIVES -->
+  <div class="tab-content active" data-tab="0">
+
+    <div class="features">
+
+      <div class="feature-item">
+        <div class="icon-box">📦</div>
+        <h3>Identifying influencers matching the brand’s vibe.</h3>
+      </div>
+
+      <div class="feature-item">
+        <div class="icon-box">🔄</div>
+        <h3>Getting insights and stats of the influencer.</h3>
+      </div>
+
+      <div class="feature-item">
+        <div class="icon-box">📊</div>
+        <h3>Informing influencers about the brand.</h3>
+      </div>
+
+      <div class="feature-item">
+        <div class="icon-box">🧾</div>
+        <h3>Discussing promotions and understanding narratives.</h3>
+      </div>
+
+      <div class="feature-item">
+        <div class="icon-box">🗺️</div>
+        <h3>Aligning influencer and brand on the same page.</h3>
+      </div>
+
+    </div>
+
+    <div class="image-box">
+      <img src="C.png" alt="Creatives Image">
+    </div>
+
+  </div>
+
+  <!-- TAB: NUDGE -->
+  <div class="tab-content" data-tab="1">
+
+    <div class="features">
+
+      <div class="feature-item">
+        <div class="icon-box">📍</div>
+        <h3>Understanding marketing objectives.</h3>
+      </div>
+
+      <div class="feature-item">
+        <div class="icon-box">📦</div>
+        <h3>Aligning narratives with influencers.</h3>
+      </div>
+
+      <div class="feature-item">
+        <div class="icon-box">📈</div>
+        <h3>Creating content creatively.</h3>
+      </div>
+
+      <div class="feature-item">
+        <div class="icon-box">🔁</div>
+        <h3>Adding personal touch for authenticity.</h3>
+      </div>
+
+      <div class="feature-item">
+        <div class="icon-box">🚚</div>
+        <h3>Finalizing all elements together.</h3>
+      </div>
+
+    </div>
+
+    <div class="image-box">
+      <img src="n.png" alt="Nudge Image">
+    </div>
+
+  </div>
+
+  <!-- TAB: RESULTS -->
+  <div class="tab-content" data-tab="2">
+
+    <div class="features">
+
+      <div class="feature-item">
+        <div class="icon-box">✉️</div>
+        <h3>Brand reaches millions through campaigns.</h3>
+      </div>
+
+      <div class="feature-item">
+        <div class="icon-box">🎨</div>
+        <h3>Setting marketing standards.</h3>
+      </div>
+
+      <div class="feature-item">
+        <div class="icon-box">📦</div>
+        <h3>Using Instagram collab features.</h3>
+      </div>
+
+      <div class="feature-item">
+        <div class="icon-box">💳</div>
+        <h3>Providing post-campaign insights.</h3>
+      </div>
+
+      <div class="feature-item">
+        <div class="icon-box">📍</div>
+        <h3>Building long-term relationships.</h3>
+      </div>
+
+    </div>
+
+    <div class="image-box">
+      <img src="r.png" alt="Results Image">
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<div class="mobile-section">
+
+  <!-- MOBILE TAB BUTTONS -->
+  <div class="mobile-tabs">
+    <div class="mobile-tab active" data-m="0">CREATIVES</div>
+    <div class="mobile-tab" data-m="1">NUDGE</div>
+    <div class="mobile-tab" data-m="2">RESULTS</div>
+  </div>
+
+  <!-- MOBILE IMAGE -->
+  <div class="mobile-image">
+    <img id="mobileImage" src="C.png">
+  </div>
+
+  <!-- MOBILE AUTO SCROLL LIST -->
+  <div class="mobile-scroll">
+    <div id="scrollTrack" class="mobile-scroll-track"></div>
+  </div>
+
+
+
+
+
+<!-- =============================================================== -->
+<!--                        JAVASCRIPT SECTION                        -->
+<!-- =============================================================== -->
+
+<script>
+
+/* DESKTOP TAB SWITCH */
+const tabs = document.querySelectorAll(".tab");
+const contents = document.querySelectorAll(".tab-content");
+
+tabs.forEach((tab, i) => {
+  tab.addEventListener("click", () => {
+    tabs.forEach(t => t.classList.remove("active"));
+    contents.forEach(c => c.classList.remove("active"));
+
+    tab.classList.add("active");
+    contents[i].classList.add("active");
+  });
+});
+
+
+
+/* ===================================================== */
+/*      MOBILE TAB SWITCH + AUTO-SCROLL + DOTS           */
+/* ===================================================== */
+
+const mobileTabs = document.querySelectorAll(".mobile-tab");
+const mobileImage = document.getElementById("mobileImage");
+const scrollTrack = document.getElementById("scrollTrack");
+const dots = document.querySelectorAll(".dot");
+
+
+/* FULL DATA SET */
+const mobileData = [
+  {
+    img: "C.png",
+    items: [
+      ["📦","Identifying influencers matching the brand’s vibe."],
+      ["🔄","Getting insights and stats of the influencer."],
+      ["📊","Informing influencers about the brand."],
+      ["🧾","Discussing promotions and narratives."],
+      ["🗺️","Aligning influencer and brand."]
+    ]
+  },
+  {
+    img: "n.png",
+    items: [
+      ["📍","Understanding marketing objectives."],
+      ["📦","Aligning narratives with influencers."],
+      ["📈","Creating content creatively."],
+      ["🔁","Adding personal touch."],
+      ["🚚","Finalizing all elements."]
+    ]
+  },
+  {
+    img: "r.png",
+    items: [
+      ["✉️","Brand reaches millions."],
+      ["🎨","Setting marketing standards."],
+      ["📦","Using Instagram collab features."],
+      ["💳","Providing insights."],
+      ["📍","Building long-term relationships."]
+    ]
+  }
+];
+
+
+
+/* LOAD MOBILE TAB CONTENT */
+function loadMobileTab(index) {
+  mobileImage.src = mobileData[index].img;
+
+  scrollTrack.innerHTML = "";
+
+  /* Original list */
+  mobileData[index].items.forEach(([icon, text]) => {
+    scrollTrack.innerHTML += `
+      <div class="mobile-feature">
+        <div class="mobile-icon">${icon}</div>
+        <h3>${text}</h3>
+      </div>`;
+  });
+
+  /* Duplicate list for infinite scroll */
+  mobileData[index].items.forEach(([icon, text]) => {
+    scrollTrack.innerHTML += `
+      <div class="mobile-feature">
+        <div class="mobile-icon">${icon}</div>
+        <h3>${text}</h3>
+      </div>`;
+  });
+
+  /* Update dots */
+  dots.forEach(d => d.classList.remove("active"));
+  dots[index].classList.add("active");
+}
+
+
+/* START WITH TAB 0 */
+loadMobileTab(0);
+
+
+/* MOBILE CLICK HANDLING */
+mobileTabs.forEach((tab, index) => {
+  tab.addEventListener("click", () => {
+    mobileTabs.forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+    loadMobileTab(index);
+  });
+});
+
+
+/* DOT CLICK HANDLING */
+dots.forEach((dot, index) => {
+  dot.addEventListener("click", () => {
+    mobileTabs.forEach(t => t.classList.remove("active"));
+    mobileTabs[index].classList.add("active");
+    loadMobileTab(index);
+  });
+});
+
+</script>
+
+</body>
+</html>
